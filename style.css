@@ -1,0 +1,68 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: rgb(1, 1, 36);
+}
+
+.app-title h1{
+    color: #c0c5d1;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.2px;
+}
+
+.input-group {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    max-width: 700px;
+    width: 100%;
+    line-height: 1.4em;
+    font-size: 14px;
+    display: flex;
+    background: #c0c5d1;
+    border-radius: 6px;
+    box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#button {
+    text-align: center;
+    background: #96a2be;
+    color: rgb(1, 1, 36);
+    font-weight: bold;
+    letter-spacing: 0.2px;
+    border: none;
+}
+
+#button:hover,
+#button:active {
+    background-color: rgb(1, 1, 36);
+    color: #c0c5d1;
+}
+
+.todo-nav li {
+    margin-top: 30px;
+}
+
+.nav-link {
+    color: #c0c5d1;
+}
+
+.nav {
+    display:flex; 
+    justify-content:center;
+}
+
+.border-bottom {
+    border-bottom: #c0c5d1;
+    margin-top: 30px;
+    max-width: 700px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
