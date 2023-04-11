@@ -3,7 +3,7 @@ body {
   background-color: rgb(1, 1, 36);
 }
 
-h2 {
+h1 {
   color: #c0c5d1;
   display: flex;
   justify-content: center;
@@ -34,7 +34,7 @@ h2 {
   box-sizing: border-box;
 }
 
-#button {
+#addTodoButton {
   text-align: center;
   background: #96a2be;
   color: rgb(1, 1, 36);
@@ -45,29 +45,29 @@ h2 {
   width: 85px;
 }
 
-#button:hover,
-#button:active {
+#addTodoButton:hover,
+#addTodoButton:active {
   background-color: rgb(1, 1, 36);
   color: #c0c5d1;
 }
 
 .todo-nav {
   margin-top: 30px;
-  display: flex;
-  justify-content: center;
 }
 
 .count {
   color: #c0c5d1;
-}
-
-p {
-  tab-size: 3px;
+  display: flex;
+  justify-content: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .border-bottom {
   border-bottom: #c0c5d1;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -75,7 +75,7 @@ p {
 
  li {
   color: #c0c5d1;
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 20px;
   letter-spacing: 0.2px;
   list-style: none;
@@ -86,11 +86,16 @@ p {
   justify-content: left;
 }
 
+#todo-list {
+  margin-top: 6px;
+}
+
 input[type="checkbox"] {
+  margin-top: 6px;
   cursor: pointer;
   margin-right: 30px;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .edit {
@@ -134,7 +139,3 @@ input[type="checkbox"] {
   color: #c0c5d1;
 }
 
-h1 {
-  color: #c0c5d1;
-  font-size: 20px;
-}

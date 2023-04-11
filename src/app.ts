@@ -1,113 +1,111 @@
-interface ToDo {
-  name: string;
-  completed: boolean;
+interface ToDoApp {
+    name: string;
+    completed: boolean;
 }
 
 class Todo {
-  private task: ToDo[];
+    private todos: ToDoApp[];
+    constructor() {
+        this.todos = [];
+    }
 
-  constructor() {
-      this.task = [];
-  }
+    //add task
+    addToList(todoName: string): void {
+        const task: ToDoApp = {
+            name: todoName,
+            completed: false,
+        };
+        this.todos.push(task);
+        this.allFunctionHandler();
+    }
 
-  //add task
-  addToList(taskName: string): void {
-      const task: ToDo = {
-          name: taskName,
-          completed: false,
-      };
-      this.task.push(task);
-      this.functioningTask();
-  }
+    //edit task
+    editDoList(index: number, todoName: string): void {
+        this.todos[index].name = todoName;
+        this.allFunctionHandler();
+    }
 
-  //edit task
-  editDoList(index: number, taskName: string): void {
-      this.task[index].name = taskName;
-      this.functioningTask();
-  }
+    //delete task
+    deleteToDoList(index: number): void {
+        this.todos.splice(index, 1);
+        this.allFunctionHandler();
+    }
 
-  //delete task
-  deleteToDoList(index: number): void {
-      this.task.splice(index, 1);
-      this.functioningTask();
-  }
+    //mark completed task
+    completeTask(index: number): void {
+        this.todos[index].completed = !this.todos[index].completed;
+        this.allFunctionHandler();
+    }
 
-  //tick complete task
-  completeTask(index: number): void {
-      this.task[index].completed = !this.task[index].completed;
-      this.functioningTask();
-  }
+    //all functions
+    allFunctionHandler(): void {
+        const todoList = document.getElementById("todo-list") as HTMLLIElement;
+        const allTasks = document.getElementById("count") as HTMLElement;
+        let count = 0;
+        todoList.innerHTML = "";
 
-  //functions for tasks
-  functioningTask(): void {
-      const doList = document.getElementById("todo-list") as HTMLLIElement;
-      const allAboutTasks = document.getElementById("count") as HTMLElement;
-      let count = 0;
+        this.todos.forEach((task: ToDoApp, index: number) => {
+            const listItem = document.createElement("li");
+            listItem.className = "task-item";
+            if (task.completed) {
+                listItem.classList.add("completed");
+                count++;
+            }
 
-      doList.innerHTML = "";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.completed;
+            checkbox.addEventListener("change", () => {
+                this.completeTask(index);
+            });
 
-      this.task.forEach((task: ToDo, index: number) => {
-          const listItem = document.createElement("li");
-          listItem.className = "task-item";
-          if (task.completed) {
-              listItem.classList.add("completed");
-              count++;
-          }
+            const todoName = document.createElement("span");
+            todoName.textContent = task.name;
+            todoName.className = "task-name";
 
-          const checkbox = document.createElement("input");
-          checkbox.type = "checkbox";
-          checkbox.checked = task.completed;
-          checkbox.addEventListener("change", () => {
-              this.completeTask(index);
-          });
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.className = "edit";
+            editButton.addEventListener("click", () => {
+                const newtodoName = prompt("Edit Your Task :", task.name);
+                if (newtodoName) {
+                    this.editDoList(index, newtodoName);
+                }
+            });
 
-          const taskName = document.createElement("span");
-          taskName.textContent = task.name;
-          taskName.className = "task-name";
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "del";
+            deleteButton.addEventListener("click", () => {
+                this.deleteToDoList(index);
+            });
 
-          const editButton = document.createElement("button");
-          editButton.textContent = "Edit";
-          editButton.className = "edit";
-          editButton.addEventListener("click", () => {
-              const newTaskName = prompt("Edit Your Task :", task.name);
-              if (newTaskName) {
-                  this.editDoList(index, newTaskName);
-              }
-          });
+            listItem.appendChild(checkbox);
+            listItem.appendChild(todoName);
+            listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
+            todoList.appendChild(listItem);
+        });
 
-          const deleteButton = document.createElement("button");
-          deleteButton.textContent = "Delete";
-          deleteButton.className = "del";
-          deleteButton.addEventListener("click", () => {
-              this.deleteToDoList(index);
-          });
+        const Total = this.todos.length;
+        const Incomplete = Total - count;
 
-          listItem.appendChild(checkbox);
-          listItem.appendChild(taskName);
-          listItem.appendChild(editButton);
-          listItem.appendChild(deleteButton);
-          doList.appendChild(listItem);
-      });
-
-      const Total = this.task.length;
-      const Incomplete = Total - count;
-
-      allAboutTasks.innerHTML = `<nav class="nav todo-nav">
+        allTasks.innerHTML = `<nav class="nav todo-nav">
                                   <p>All : <span>${Total}</span>|</p>
                                   <p>Completed : <span>${count}</span>|</p>
-                                  <p>Incomplete :  <span>${Incomplete}</span></p>
+                                  <p>Incompleted :  <span>${Incomplete}</span></p>
                                   </nav>`;
-  }
+    }
 }
 
 const todo = new Todo();
 
-const Input = document.getElementById("toDoInput") as HTMLInputElement;
+const todoInput = document.getElementById("toDoInput") as HTMLInputElement;
 const addButton = document.getElementById("addTodoButton") as HTMLButtonElement;
 addButton.addEventListener("click", () => {
-  const taskName = Input.value.trim();
-  if (taskName) {
-      todo.addToList(taskName);
-      Input.value = "";
-  }
-})
+    const todoName = todoInput.value.trim();
+    if (todoName) {
+        todo.addToList(todoName);
+        todoInput.value = "";
+    }
+});
