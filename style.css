@@ -13,6 +13,10 @@ h2 {
   letter-spacing: 0.2px;
 }
 
+.app-title i {
+    margin-right: 15px;
+}
+
 .input-group {
   margin-top: 30px;
   margin-left: auto;
@@ -49,15 +53,16 @@ h2 {
 
 .todo-nav {
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
 }
 
-.nav-link {
+.count {
   color: #c0c5d1;
 }
 
-.nav {
-  display: flex;
-  justify-content: center;
+p {
+  tab-size: 3px;
 }
 
 .border-bottom {
@@ -68,7 +73,7 @@ h2 {
   margin-right: auto;
 }
 
-.todo-list li {
+ li {
   color: #c0c5d1;
   margin-top: 30px;
   font-size: 20px;
