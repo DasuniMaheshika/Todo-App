@@ -63,13 +63,14 @@ class Todo {
         this.todoList.innerHTML = "";
         let completedCount = 0;
         // Render each Todo item and add it to the Todo list
-        this.items.forEach((item, index) => {
+        const transformedItems = this.items.map((item, index) => {
             const listItem = this.renderTodoItem(item, index);
-            this.todoList.appendChild(listItem);
             if (item.completed) {
                 completedCount++;
             }
+            return listItem;
         });
+        this.todoList.append(...transformedItems);
         const totalCount = this.items.length;
         const incompleteCount = totalCount - completedCount;
         // Set the text content of the summary element to a string containing the total count, completed count, and incomplete count of todo items using template literals
